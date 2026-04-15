@@ -2,10 +2,6 @@
 Analyse des inégalités territoriales d’accès aux soins en France à l’échelle communale, à partir des équipements de santé (BPE), des données socio-économiques (FILOSOFI) et des temps d’accès aux hôpitaux.
 
 
-Voici une version simple, claire et courte de ton README.
-
----
-
 # Installation et utilisation du projet
 
 ## 1. Cloner le dépôt
@@ -15,7 +11,7 @@ git clone https://github.com/aristidinahfaifa-afk/G4B_acces_equip_medical_france
 cd G4B_acces_equip_medical_france
 ```
 
----
+
 
 ## 2. Installer l’environnement
 
@@ -31,7 +27,6 @@ Cette commande :
 * installe toutes les dépendances nécessaires
 * garantit que tout le monde utilise les mêmes versions
 
----
 
 ## 3. Activer l’environnement
 
@@ -39,7 +34,6 @@ Cette commande :
 source .venv/bin/activate
 ```
 
----
 
 ## 4. Ajouter une nouvelle dépendance (développeurs)
 
@@ -55,7 +49,6 @@ git commit -m "add dependency"
 git push
 ```
 
----
 
 ## 5. Mettre à jour le projet
 
