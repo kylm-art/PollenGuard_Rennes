@@ -32,7 +32,6 @@ Pour maximiser la performance du modèle, nous utilisons :
 ---
 
 
-
 # Installation et utilisation du projet
 
 ## 1. Cloner le dépôt
