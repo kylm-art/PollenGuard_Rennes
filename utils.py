@@ -239,3 +239,32 @@ def classifier_risque(valeur):
         return 1
     else:
         return 2
+
+def construire_features(df, colonnes_pollen, date_col='date'):
+    """
+    Construit les variables explicatives pour la modélisation.
+    
+    Paramètres
+    ----------
+    df : DataFrame source
+    colonnes_pollen : list, noms des colonnes de pollen
+    date_col : str, nom de la colonne date
+         
+    Retourne
+    -------
+    DataFrame enrichi avec variables temporelles et retardées
+    """
+    df = df.copy()
+    
+    # Variables temporelles
+    df['mois'] = df[date_col].dt.month
+    df['jour_annee'] = df[date_col].dt.dayofyear
+    
+    # Variables retardées et moyenne glissante pour chaque colonne pollen
+    for col in colonnes_pollen:
+        for lag in [1, 2, 3]:
+            df[f'{col}_lag{lag}'] = df[col].shift(lag)
+        df[f'{col}_moy3j'] = df[col].rolling(3).mean()
+    
+    df = df.dropna()
+    return df
