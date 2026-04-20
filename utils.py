@@ -268,3 +268,24 @@ def construire_features(df, colonnes_pollen, date_col='date'):
     
     df = df.dropna()
     return df
+
+def creer_cible_binaire(df, colonnes_pollen):
+    """
+    Crée une variable cible binaire pour chaque pollen.
+    
+    Paramètres
+    ----------
+    df : DataFrame source
+    colonnes_pollen : list, noms des colonnes de pollen
+    
+    Retourne
+    -------
+    DataFrame avec nouvelles colonnes binaires (0=Faible, 1=À risque)
+    """
+    df = df.copy()
+    for col in colonnes_pollen:
+        df[f'risque_bin_{col}_j1'] = (df[col] > 30).astype(int).shift(-1)
+    df = df.dropna()
+    for col in colonnes_pollen:
+        df[f'risque_bin_{col}_j1'] = df[f'risque_bin_{col}_j1'].astype(int)
+    return df    
