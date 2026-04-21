@@ -1,9 +1,64 @@
 ---
-title: 1. Importation de packages
 jupyter: python3
 ---
 
+<div style="padding: 3rem 2rem; text-align: center; border: 0.5px solid #C0DD97; border-radius: 12px;);
+">
 
+  <img src="ressources/logo_ensai.png" height="60px"/>
+  
+  <div style="display: flex; justify-content: center; gap: 8px; margin: 1.5rem 0 1rem;">
+    <div style="width: 12px; height: 12px; border-radius: 50%; background: #639922; margin-top: 6px;"></div>
+    <div style="width: 8px; height: 8px; border-radius: 50%; background: #97C459; margin-top: 10px;"></div>
+    <div style="width: 16px; height: 16px; border-radius: 50%; background: #3B6D11; margin-top: 4px;"></div>
+    <div style="width: 10px; height: 10px; border-radius: 50%; background: #C0DD97; margin-top: 8px;"></div>
+    <div style="width: 14px; height: 14px; border-radius: 50%; background: #639922; margin-top: 5px;"></div>
+  </div>
+
+  <h1 style="font-size: 2.2em; font-weight: 500; color: #3B6D11;">Allergo-Predict</h1>
+  <h2 style="font-size: 1.1em; font-weight: 400; color: #5F5E5A;">Modélisation et Prédiction du Risque Allergique Pollinique à Rennes</h2>
+
+  <div style="display: inline-block; background: #EAF3DE; border-radius: 8px; padding: 0.4rem 1.2rem; margin: 1rem 0 2rem;">
+    <span style="font-size: 13px; color: #3B6D11; font-weight: 500;">Projet final — Python pour la Data Science</span>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 480px; margin: 0 auto 2rem;">
+    <div style="background: #EAF3DE; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 11px; color: #888780; margin: 0 0 4px;">ÉTUDIANTES</p>
+      <p style="font-size: 14px; font-weight: 500; margin: 0;">Prénom1 NOM1</p>
+      <p style="font-size: 14px; font-weight: 500; margin: 4px 0 0;">Prénom2 NOM2</p>
+    </div>
+    <div style="background: #EAF3DE; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 11px; color: #888780; margin: 0 0 4px;">ENCADRANTS</p>
+      <p style="font-size: 14px; font-weight: 500; margin: 0;">Julien Pramil</p>
+      <p style="font-size: 14px; color: #5F5E5A; margin: 4px 0 0;">Lino Galiana</p>
+    </div>
+  </div>
+
+  <p style="font-size: 13px; color: #888780;">Année 2024–2025 | Avril 2026 | Rennes, France</p>
+
+</div>
+
+## 📋 Table des matières
+
+1. [Importation des packages](#1-importation-de-packages)
+2. [Importation des données](#2-importation-des-données)
+3. [Revue de littérature](#2-revue-de-littérature)
+4. [Fusion et analyse exploratoire](#3fusion-et-analyse-exploratoire)
+   - 3.1 [Fusion des bases](#31-fusion-des-bases)
+   - 3.2 [Exploration et traitement](#32-exploration-et-traitement-de-la-base-détude)
+   - 3.3 [Feature engineering](#33-feature-engeneering)
+   - 3.4 [Définition des variables](#34-définition-des-variables-pour-la-modélisation)
+5. [Modélisation](#4-modélisation)
+   - 4.1 [Préparation des données](#41-préparation-des-données)
+   - 4.2 [Modélisation](#42-modélisation)
+   - 4.3 [Évaluation sur le jeu de test](#43-évaluation-sur-le-jeu-de-test)
+   - 4.4 [Classification binaire](#44-amélioration--classification-binaire)
+   - 4.5 [Sauvegarde et pipeline](#45-sauvegarde-des-modèles-et-pipeline-de-prédiction)
+   - 4.6 [Conclusion générale](#46-conclusion-générale)
+6. [Bibliographie](#bibliographie)
+
+# 1. Importation de packages
 
 ```{python}
 import os
@@ -355,17 +410,17 @@ df_jour.head()
 Sauvegarde dans S3 pour utilisation éventuelle
 
 ```{python}
-fs = s3fs.S3FileSystem(
-    client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"}
-)
+#fs = s3fs.S3FileSystem(
+  #  client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"}
+#)
 
-MY_BUCKET = "lesline"
-FILE_PATH_OUT_S3 = f"{MY_BUCKET}/diffusion/data_pollen_meteo_jour.csv"
+#MY_BUCKET = "lesline"
+#FILE_PATH_OUT_S3 = f"{MY_BUCKET}/diffusion/data_pollen_meteo_jour.csv"
 
-with fs.open(FILE_PATH_OUT_S3, "w") as f:
-    df_jour.to_csv(f, index=False)
+#with fs.open(FILE_PATH_OUT_S3, "w") as f:
+#    df_jour.to_csv(f, index=False)
 
-fs.ls(f"{MY_BUCKET}/diffusion")
+#fs.ls(f"{MY_BUCKET}/diffusion")
 ```
 
 ## 3.3. Feature engeneering
@@ -491,17 +546,17 @@ sauvegarder_donnees_clean(
 Sauvegarde de données dans  S3 pour l'utilisation dans streamlit
 
 ```{python}
-fs = s3fs.S3FileSystem(
-    client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"}
-)
+#fs = s3fs.S3FileSystem(
+ #   client_kwargs={"endpoint_url": "https://minio.lab.sspcloud.fr"}
+#)
 
-MY_BUCKET = "lesline"
-FILE_PATH_OUT_S3 = f"{MY_BUCKET}/diffusion/data_features_final_clean.csv"
+#MY_BUCKET = "lesline"
+#FILE_PATH_OUT_S3 = f"{MY_BUCKET}/diffusion/data_features_final_clean.csv"
 
-with fs.open(FILE_PATH_OUT_S3, "w") as f:
-    df_jour_modele.to_csv(f, index=False)
+#with fs.open(FILE_PATH_OUT_S3, "w") as f:
+#    df_jour_modele.to_csv(f, index=False)
 
-fs.ls(f"{MY_BUCKET}/diffusion")
+#fs.ls(f"{MY_BUCKET}/diffusion")
 ```
 
 ## 3.4 Définition des variables pour la modélisation
